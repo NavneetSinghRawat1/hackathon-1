@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Carbon Footprint Calculator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+      :root {
+        --bg: #0b1320;
+        --card: #121a2b;
+        --ink: #e9eefb;
+        --muted: #a8b3cf;
+        --accent: #7dd87d;
+        --warn: #ffd166;
+        --ring: #2a3a5f;
+        --good: #22c55e;
+        --bad: #ef4444;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Inter,
+          Arial, sans-serif;
+        background: linear-gradient(
+          180deg,
+          #0b1320 0%,
+          #0d1424 60%,
+          #0b1320 100%
+        );
+        color: var(--ink);
+      }
+      .container {
+        max-width: 1100px;
+        margin: 2rem auto;
+        padding: 0 1rem 3rem;
+      }
+      .header {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        margin: 2rem 0;
+      }
+      .title {
+        font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+        font-weight: 800;
+        letter-spacing: 0.4px;
+      }
+      .subtitle {
+        color: var(--muted);
+        margin-top: 0.25rem;
+      }
+      .grid {
+        display: grid;
+        gap: 1rem;
+      }
+      @media (min-width: 900px) {
+        .grid {
+          grid-template-columns: 1.1fr 0.9fr;
+        }
+      }
+      .card {
+        background: linear-gradient(180deg, #121a2b, #0f1626);
+        border: 1px solid var(--ring);
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      }
+      .card-header {
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid var(--ring);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .card-body {
+        padding: 1rem 1.25rem;
+      }
+      .row {
+        display: grid;
+        gap: 0.75rem;
+        margin: 0.75rem 0;
+      }
+      @media (min-width: 720px) {
+        .row {
+          grid-template-columns: 1fr 1fr;
+          gap: 1rem;
+        }
+      }
+      label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      input,
+      select {
+        width: 180px;
+        max-width: 50vw;
+        background: #0b1221;
+        color: var(--ink);
+        border: 1px solid #203055;
+        border-radius: 12px;
+        padding: 0.6rem 0.75rem;
+        font-size: 1rem;
+      }
+      input[type="range"] {
+        width: 100%;
+      }
+      .hint {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+      .btns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+      button {
+        cursor: pointer;
+        border: 1px solid var(--ring);
+        background: #0e172a;
+        color: var(--ink);
+        padding: 0.7rem 1rem;
+        border-radius: 12px;
+        font-weight: 600;
+      }
+      button.primary {
+        background: linear-gradient(135deg, #1f8f52, #23a35d);
+        border: none;
+      }
+      button.ghost {
+        background: transparent;
+      }
+      .kpi {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      @media (min-width: 520px) {
+        .kpi {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .kpi .tile {
+        background: #0b1322;
+        border: 1px solid var(--ring);
+        border-radius: 16px;
+        padding: 1rem;
+      }
+      .kpi .n {
+        font-weight: 800;
+        font-size: 1.4rem;
+      }
+      .kpi .l {
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      progress {
+        width: 100%;
+        height: 10px;
+        border-radius: 999px;
+        overflow: hidden;
+      }
+      progress::-webkit-progress-bar {
+        background: #0b1320;
+      }
+      progress::-webkit-progress-value {
+        background: linear-gradient(90deg, #23a35d, #7dd87d);
+      }
+      .breakdown {
+        display: grid;
+        gap: 0.75rem;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #0c182b;
+        border: 1px dashed var(--ring);
+        padding: 0.35rem 0.6rem;
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+      .tips {
+        display: grid;
+        gap: 0.6rem;
+      }
+      .tip {
+        background: #0b1426;
+        border-left: 4px solid var(--accent);
+        padding: 0.75rem 1rem;
+        border-radius: 12px;
+      }
+      .foot {
+        color: var(--muted);
+        font-size: 0.8rem;
+        margin-top: 0.75rem;
+      }
+      .eco-toggle {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .switch {
+        position: relative;
+        width: 48px;
+        height: 26px;
+        background: #1c2945;
+        border-radius: 999px;
+        border: 1px solid var(--ring);
+      }
+      .switch i {
+        position: absolute;
+        top: 50%;
+        left: 4px;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px;
+        background: #fff;
+        border-radius: 50%;
+        transition: all 0.2s;
+      }
+      .switch.on {
+        background: #1b6340;
+      }
+      .switch.on i {
+        left: 26px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .small {
+        font-size: 0.9rem;
+      }
+      .sep {
+        height: 1px;
+        background: var(--ring);
+        margin: 1rem 0;
+      }
+    </style>
+  </head>
+  <body>
+     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#"><i class="fas fa-leaf me-2"></i>EcoGuide</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aboutus.html">About us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="footprints.html">Carbon Footprint calculator</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="loginSignup.html" >  <img src="./img/icons8-login-50.png" alt="login" style="height: 30px;"> </a></li>
+                   
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+      <div class="header">
+        <div>
+          <div class="title">♻️ Carbon Footprint Calculator</div>
+          <div class="subtitle">
+            Estimate your monthly & annual CO₂e and get personalized reduction
+            tips.
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="grid">
+        <!-- INPUTS -->
+        <section class="card" aria-labelledby="inputsTitle">
+          <div class="card-header">
+            <h2 id="inputsTitle">Your Inputs</h2>
+            <span class="hint">Enter typical usage (numbers can be rough)</span>
+          </div>
+          <div class="card-body">
+            <h3>🏠 Home Energy</h3>
+            <div class="row">
+              <label
+                >Electricity (kWh / month)
+                <input type="number" id="elKwh" min="0" step="1" value="200" />
+              </label>
+              <label
+                >LPG cylinders (per month)
+                <input
+                  type="number"
+                  id="lpgCyl"
+                  min="0"
+                  step="0.1"
+                  value="0.3"
+                />
+              </label>
+            </div>
+
+            <h3>🚗 Travel</h3>
+            <div class="row">
+              <label
+                >Car travel (km / week)
+                <input type="number" id="carKm" min="0" step="1" value="50" />
+              </label>
+              <label
+                >Car fuel
+                <select id="carFuel">
+                  <option value="petrol">Petrol</option>
+                  <option value="diesel">Diesel</option>
+                  <option value="ev">EV</option>
+                </select>
+              </label>
+            </div>
+            <div class="row">
+              <label
+                >Two‑wheeler (km / week)
+                <input type="number" id="bikeKm" min="0" step="1" value="20" />
+              </label>
+              <label
+                >Bus / Metro (km / week)
+                <input type="number" id="busKm" min="0" step="1" value="30" />
+              </label>
+            </div>
+            <div class="row">
+              <label
+                >Train (km / week)
+                <input type="number" id="trainKm" min="0" step="1" value="20" />
+              </label>
+              <label
+                >Flights per year — short / long haul
+                <span>
+                  <input
+                    style="width: 84px"
+                    type="number"
+                    id="shortFlights"
+                    min="0"
+                    step="1"
+                    value="1"
+                  />
+                  <input
+                    style="width: 84px"
+                    type="number"
+                    id="longFlights"
+                    min="0"
+                    step="1"
+                    value="0"
+                  />
+                </span>
+              </label>
+            </div>
+
+            <h3>🍽️ Food</h3>
+            <div class="row">
+              <label
+                >Meat frequency
+                <select id="meatFreq">
+                  <option value="daily">Daily</option>
+                  <option value="few">Few times / week</option>
+                  <option value="rare">Rarely</option>
+                  <option value="vegan">Vegetarian / Vegan</option>
+                </select>
+              </label>
+              <label
+                >Dairy consumption
+                <select id="dairyFreq">
+                  <option value="high">High</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low</option>
+                  <option value="none">None</option>
+                </select>
+              </label>
+            </div>
+
+            <h3>🗑️ Waste</h3>
+            <div class="row">
+              <label
+                >Landfill waste (kg / week)
+                <input type="number" id="wasteKg" min="0" step="1" value="5" />
+              </label>
+              <label
+                >Do you recycle?
+                <select id="recycle">
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="btns">
+              <button class="primary" id="calcBtn">Calculate</button>
+              <button class="ghost" id="resetBtn">Reset</button>
+              <button class="ghost" id="printBtn">Print / Save PDF</button>
+            </div>
+
+            <div class="foot">
+              Note: This is a simplified calculator for demos/hackathons. Edit
+              the constants in the JS section to localize factors.
+            </div>
+          </div>
+        </section>
+
+        <!-- RESULTS -->
+        <section class="card" aria-labelledby="resultsTitle">
+          <div class="card-header">
+            <h2 id="resultsTitle">Results</h2>
+            <span class="hint">Estimated CO₂e (kg)</span>
+          </div>
+          <div class="card-body">
+            <div class="kpi">
+              <div class="tile">
+                <div class="l">Total / month</div>
+                <div class="n" id="kpiMonth">—</div>
+              </div>
+              <div class="tile">
+                <div class="l">Total / year</div>
+                <div class="n" id="kpiYear">—</div>
+              </div>
+              <div class="tile">
+                <div class="l">Smartphone charges equiv.</div>
+                <div class="n" id="kpiPhones">—</div>
+              </div>
+              <div class="tile">
+                <div class="l">Trees to offset (yr)</div>
+                <div class="n" id="kpiTrees">—</div>
+              </div>
+            </div>
+
+            <div class="sep"></div>
+
+            <h3>Category Breakdown</h3>
+            <div class="breakdown" id="breakdown"></div>
+
+            <div class="sep"></div>
+
+            <h3>Your Impact Level</h3>
+            <progress id="impactBar" value="0" max="100"></progress>
+            <div class="muted small" id="impactNote">
+              Run the calculation to see your score.
+            </div>
+
+            <div class="sep"></div>
+
+            <h3>Tips to Reduce</h3>
+            <div class="tips" id="tips"></div>
+          </div>
+        </section>
+      </div>
+
+      <p class="foot">
+        Made for hackathons • No external libraries • MIT‑style usage permitted
+      </p>
+    </div>
+
+    <script>
+      // === Emission factors (editable) ===
+      const FACTORS = {
+        ELECTRICITY_KWH: 0.7, // kg CO2e per kWh (example grid avg)
+        LPG_CYL_CO2: 45, // kg CO2e per 14.2 kg cylinder
+        CAR_KM_PETROL: 0.16, // kg per km (assumes ~15 km/l, 2.31 kg/l)
+        CAR_KM_DIESEL: 0.15, // kg per km (assumes ~18 km/l, 2.68 kg/l)
+        CAR_KM_EV: 0.05, // kg per km (charging from grid)
+        BIKE_KM: 0.08, // kg per km (two-wheeler)
+        BUS_KM: 0.03, // kg per passenger‑km
+        TRAIN_KM: 0.01, // kg per passenger‑km
+        FLIGHT_SHORT_PER_FLIGHT: 250, // kg per short‑haul (round trip equiv.) per person
+        FLIGHT_LONG_PER_FLIGHT: 1100, // kg per long‑haul per person
+        MEAT: { daily: 60, few: 30, rare: 10, vegan: 5 }, // kg per month
+        DAIRY: { high: 25, medium: 12, low: 6, none: 0 }, // kg per month
+        WASTE_KG: 0.45, // kg CO2e per kg to landfill
+        RECYCLING_BONUS: -5, // kg per month reduction if recycling
+        PHONES_PER_KG: 60, // 1 kg CO2e ≈ 60 smartphone charges
+        TREE_OFFSET_PER_YEAR: 21, // 1 tree ≈ 21 kg CO2e per year (very rough)
+      };
+
+      const $ = (sel) => document.querySelector(sel);
+
+      function num(id) {
+        return Math.max(0, parseFloat($(id).value || 0));
+      }
+
+      function calc() {
+        // Inputs
+        const elKwh = num("#elKwh");
+        const lpg = num("#lpgCyl");
+        const carKmW = num("#carKm");
+        const carFuel = $("#carFuel").value;
+        const bikeKmW = num("#bikeKm");
+        const busKmW = num("#busKm");
+        const trainKmW = num("#trainKm");
+        const shortFlights = num("#shortFlights");
+        const longFlights = num("#longFlights");
+        const meat = $("#meatFreq").value;
+        const dairy = $("#dairyFreq").value;
+        const wasteKgW = num("#wasteKg");
+        const recycle = $("#recycle").value === "yes";
+
+        // Home energy (monthly)
+        const energy = {
+          electricity: elKwh * FACTORS.ELECTRICITY_KWH,
+          lpg: lpg * FACTORS.LPG_CYL_CO2,
+        };
+
+        // Travel (convert weekly to monthly ~ *4.33)
+        const W2M = 4.33;
+        const carFactor =
+          carFuel === "petrol"
+            ? FACTORS.CAR_KM_PETROL
+            : carFuel === "diesel"
+            ? FACTORS.CAR_KM_DIESEL
+            : FACTORS.CAR_KM_EV;
+        const travel = {
+          car: carKmW * W2M * carFactor,
+          bike: bikeKmW * W2M * FACTORS.BIKE_KM,
+          bus: busKmW * W2M * FACTORS.BUS_KM,
+          train: trainKmW * W2M * FACTORS.TRAIN_KM,
+          flights:
+            (shortFlights * FACTORS.FLIGHT_SHORT_PER_FLIGHT +
+              longFlights * FACTORS.FLIGHT_LONG_PER_FLIGHT) /
+            12,
+        };
+
+        // Food (monthly)
+        const food = {
+          meat: FACTORS.MEAT[meat],
+          dairy: FACTORS.DAIRY[dairy],
+        };
+
+        // Waste (monthly)
+        const waste = {
+          landfill: wasteKgW * FACTORS.WASTE_KG * W2M,
+          recycle: recycle ? FACTORS.RECYCLING_BONUS : 0,
+        };
+
+        // Totals
+        const totals = {
+          energy: energy.electricity + energy.lpg,
+          transport:
+            travel.car +
+            travel.bike +
+            travel.bus +
+            travel.train +
+            travel.flights,
+          food: food.meat + food.dairy,
+          waste: waste.landfill + waste.recycle,
+        };
+
+        const month = Object.values(totals).reduce((a, b) => a + b, 0);
+        const year = month * 12;
+
+        // KPIs
+        $("#kpiMonth").textContent = month.toFixed(0) + " kg";
+        $("#kpiYear").textContent = year.toFixed(0) + " kg";
+        $("#kpiPhones").textContent = Math.round(
+          month * FACTORS.PHONES_PER_KG
+        ).toLocaleString();
+        $("#kpiTrees").textContent = Math.max(
+          1,
+          Math.round(year / FACTORS.TREE_OFFSET_PER_YEAR)
+        );
+
+        // Breakdown UI
+        const list = [
+          ["🏠 Home energy", totals.energy],
+          ["🚗 Transport", totals.transport],
+          ["🍽️ Food", totals.food],
+          ["🗑️ Waste", totals.waste],
+        ].sort((a, b) => b[1] - a[1]);
+
+        const max = Math.max(...list.map((x) => x[1]), 1);
+        const bd = $("#breakdown");
+        bd.innerHTML = "";
+        list.forEach(([label, val]) => {
+          const wrap = document.createElement("div");
+          wrap.innerHTML = `
+          <div class="pill">${label} · <strong>${val.toFixed(
+            0
+          )} kg/mo</strong></div>
+          <progress value="${((val / max) * 100).toFixed(
+            0
+          )}" max="100"></progress>
+        `;
+          bd.appendChild(wrap);
+        });
+
+        // Impact score (0–100 scaled to 0–1000 kg/mo typical)
+        const score = Math.min(100, Math.round(month / 10));
+        $("#impactBar").value = score;
+        let note = "Lower is better. Typical range: 150–600 kg/mo.";
+        if (month < 200) note = "Great! You are below typical urban footprint.";
+        else if (month < 400) note = "Decent — there is still room to improve.";
+        else
+          note =
+            "High — focus on the top category shown above to cut biggest chunks first.";
+        $("#impactNote").textContent = note;
+
+        // Tips (contextual)
+        const topKey = list[0][0];
+        const tips = [];
+        if (topKey.includes("Transport")) {
+          tips.push(
+            "Use public transport or carpool 2 days/week to cut car emissions by ~40%."
+          );
+          tips.push(
+            "Keep tyres inflated and drive smoothly; efficiency gains of 5–10%."
+          );
+          tips.push(
+            "Swap one short‑haul flight this year for rail where possible."
+          );
+        }
+        if (topKey.includes("Home")) {
+          tips.push(
+            "Set AC to 26°C and use fans — reduces cooling load significantly."
+          );
+          tips.push("Switch to LED bulbs and turn off standby loads.");
+          tips.push(
+            "Consider rooftop solar or a green electricity plan when available."
+          );
+        }
+        if (topKey.includes("Food")) {
+          tips.push(
+            "Try a meat‑free weekday; can reduce food emissions by ~20–30%."
+          );
+          tips.push("Prefer seasonal, local produce and reduce food waste.");
+          tips.push(
+            "Opt for plant‑based dairy alternatives a few times per week."
+          );
+        }
+        if (topKey.includes("Waste")) {
+          tips.push("Segregate and recycle; compost kitchen scraps.");
+          tips.push("Avoid single‑use plastics; carry a bottle and cloth bag.");
+          tips.push(
+            "Buy durable, repairable products; donate instead of discarding."
+          );
+        }
+        const tipsBox = $("#tips");
+        tipsBox.innerHTML = "";
+        tips.slice(0, 3).forEach((t) => {
+          const el = document.createElement("div");
+          el.className = "tip";
+          el.textContent = "• " + t;
+          tipsBox.appendChild(el);
+        });
+
+        return { month, year, totals };
+      }
+
+      // Events
+      $("#calcBtn").addEventListener("click", calc);
+      $("#resetBtn").addEventListener("click", () => {
+        document
+          .querySelectorAll("input[type=number]")
+          .forEach((i) => (i.value = i.defaultValue));
+        document
+          .querySelectorAll("select")
+          .forEach((s) => (s.value = s.querySelector("option").value));
+        $("#breakdown").innerHTML = "";
+        $("#tips").innerHTML = "";
+        $("#kpiMonth").textContent = "—";
+        $("#kpiYear").textContent = "—";
+        $("#kpiPhones").textContent = "—";
+        $("#kpiTrees").textContent = "—";
+        $("#impactBar").value = 0;
+        $("#impactNote").textContent = "Run the calculation to see your score.";
+      });
+      $("#printBtn").addEventListener("click", () => window.print());
+
+      // Eco mode demo (visual/UX only)
+      const eco = $("#ecoSwitch");
+      const root = document.documentElement;
+      function setEco(on) {
+        eco.classList.toggle("on", on);
+        eco.setAttribute("aria-checked", on ? "true" : "false");
+        root.style.setProperty("--accent", on ? "#86efac" : "#7dd87d");
+        document.body.style.filter = on
+          ? "saturate(0.9) brightness(0.96)"
+          : "none";
+      }
+      eco.addEventListener("click", () =>
+        setEco(!eco.classList.contains("on"))
+      );
+      eco.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          eco.click();
+        }
+      });
+
+      // Auto-run once with defaults for nice first render
+      window.addEventListener("load", calc);
+    </script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="javascript.js"></script>
+  </body>
+</html>
