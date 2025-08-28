@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,65 +10,58 @@
     <link rel="stylesheet" href="style.css">
     <style>
         .hero-section {
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url('./img/img7.jpeg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        min-height: 91vh;
-        color: rgb(208, 252, 250);
-        /* padding: 2rem; */
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('./img/img7.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            min-height: 91vh;
+            color: rgb(208, 252, 250);
         }
 
-        .hero-title {
-        font-size: 4rem;
-        font-weight: bold;
-        text-shadow: 4px 4px 5px rgba(0,0,0,0.76);
-        margin-bottom: 1rem;
-        }
-
-        .hero-quote {
-        font-size: 1.5rem;
-        font-style: italic;
-        text-shadow: 4px 4px 5px rgba(0,0,0,0.76);
-        max-width: 800px;
-        margin: auto;
-        }
-
-        .hero-author {
-        font-size: 1rem;
-        margin-top: 0.5rem;
-        text-align: right;
-        text-shadow: 4px 4px 5px rgba(0,0,0,0.76);
-        }
-
-        /* 📱 Responsive adjustments */
-        /* @media (max-width: 992px) {
-        .hero-title {
-            font-size: 3rem;
-        }
-        .hero-quote {
-            font-size: 1.25rem;
-        }
-        } */
-
-        @media (max-width: 991px) {
         .hero-title {
             font-size: 4rem;
+            font-weight: bold;
+            text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.76);
+            margin-bottom: 1rem;
         }
+
         .hero-quote {
-            font-size: 2rem;
+            font-size: 1.5rem;
+            font-style: italic;
+            text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.76);
+            max-width: 800px;
+            margin: auto;
         }
+
         .hero-author {
-            font-size: 1.1rem;
-            margin-right: 20px;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            text-align: right;
+            text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.76);
         }
+
+        @media (max-width: 991px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+
+            .hero-quote {
+                font-size: 2rem;
+            }
+
+            .hero-author {
+                font-size: 1.1rem;
+                margin-right: 20px;
+            }
         }
-        .hero-section div a button:hover{
+
+        .hero-section div a button:hover {
             background-color: rgb(0, 0, 0);
         }
     </style>
 </head>
+
 <body>
 
     <!-- Navigation -->
@@ -83,71 +77,30 @@
                     <li class="nav-item"><a class="nav-link" href="aboutus.html">About us</a></li>
                     <li class="nav-item"><a class="nav-link" href="footprints.html">Carbon Footprint calculator</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="loginSignup.html" >  <img src="./img/icons8-login-100.png" alt="login" style="height: 30px;"> </a></li>
+                    <li class="nav-item"><a class="nav-link" href="loginSignup.html"> <img
+                                src="./img/icons8-login-100.png" alt="login" style="height: 30px;"> </a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-      <!-- <section style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./img/img7.jpeg'); background-size: cover; background-repeat: no-repeat; height: 91vh; " class="hero-section">
-        <div style="text-align: center; color: rgb(208, 252, 250); font-size: 5rem; text-shadow: 4px 4px 5px rgba(0,0,0,0.76);margin-top: 75px;">Go Green, Live Clean</div>
-        <div style="text-align: center; color: rgb(208, 252, 250); font-size: 1.5rem; text-shadow: 4px 4px 5px rgba(0,0,0,0.76); font-style: italic; width: fit-content; margin: auto;">
-            "The best way to predict the future is to create it."
-            <div style="text-align: right; color: rgb(208, 252, 250); font-size: 1rem; text-shadow: 4px 4px 5px rgba(0,0,0,0.76); font-style: italic;">- Peter Drucker</div>
-        </div>
-        <div class="d-flex justify-content-center align-items-center h-75">
-            <a href="#definition" style="cursor: pointer; z-index: 99999;">
-                <button style="box-shadow: 0px 0px 8px 6px rgba(0,0,0,0.72);" type="button" class="btn btn-success fs-5 p-3">Get started</button>
-            </a>
-        </div>
-    </section> -->
-     <section class="hero-section d-flex flex-column justify-content-center align-items-center text-center">
+
+    <section class="hero-section d-flex flex-column justify-content-center align-items-center text-center">
         <div class="hero-title">Go Green, Live Clean</div>
         <div class="hero-quote">
             "The best way to predict the future is to create it."
             <div class="hero-author">- Peter Drucker</div>
         </div>
-        <!-- <div class="mt-4">
-            <a href="#definition" class="text-decoration-none">
-            <button type="button" class="btn btn-success fs-5 p-3 shadow-lg">Get started</button>
-            </a>
-        </div> -->
-        </section>
 
-    <!-- <section class="hero-section">
-        <div class="container">
-            <div class="hero-content text-center fade-in">
-                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img src="img/img9.webp" class="d-block w-100"  alt="..." style="width: 100%; height: 70vh; background-position: fixed;">
-                      </div>
-                      <div class="carousel-item">
-                        <img src="img/img8.jpg" class="d-block w-100" alt="..." style="width: 100%; height: 70vh; background-position: fixed;">
-                      </div>
-                      <div class="carousel-item">
-                        <img src="img/img7.jpeg" class="d-block w-100" alt="..." style="width: 100%; height: 70vh; background-position: fixed;">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-            </div>
-        </div>
-    </section> -->
+    </section>
+
+
 
     <!-- Home Section -->
     <section id="definition" class="py-5">
         <div class="container">
             <h2 class="section-title text-center display-5">Why Sustainability Matters</h2>
-             <section id="business" class="py-5">
+            <section id="business" class="py-5">
                 <div class="container"
                     style="background-image: url(img/img1.jpg);height: 510px; width:100%; background-size: cover; border-radius: 40px;">
 
@@ -161,7 +114,8 @@
                                 <i class="fas fa-globe-americas text-success me-2"></i>
                                 Environmental
                             </h4>
-                            <p class="card-text">It conserves natural resources like fules, trees etc.. for future generations.</p>
+                            <p class="card-text">It conserves natural resources like fules, trees etc.. for future
+                                generations.</p>
                         </div>
                     </div>
                 </div>
@@ -172,7 +126,8 @@
                                 <i class="fas fa-users text-primary me-2"></i>
                                 Social
                             </h4>
-                            <p class="card-text">Less pollution means cleaner air, safe water, and healthier communities.</p>
+                            <p class="card-text">Less pollution means cleaner air, safe water, and healthier
+                                communities.</p>
                         </div>
                     </div>
                 </div>
@@ -183,26 +138,20 @@
                                 <i class="fas fa-chart-line text-warning me-2"></i>
                                 Economic
                             </h4>
-                            <p class="card-text">Conserving natural resources (water, energy, materials) reduces dependency on costly imports.</p>
+                            <p class="card-text">Conserving natural resources (water, energy, materials) reduces
+                                dependency on costly imports.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- ------------------------------------------------------------------------- -->
-    
-
-    <!-- ------------------------------------------------------------------------- -->
 
 
-
-
-    
-<section id="definition" class="py-5">
+    <section id="definition" class="py-5">
         <div class="container">
             <h2 class="section-title text-center display-5">Social Impact of Eco-Friendly Living</h2>
-             <section id="business" class="py-5">
+            <section id="business" class="py-5">
                 <div class="container"
                     style="background-image: url(img/img0.webp);height: 510px; width:100%; background-size: cover;border-radius: 40px;">
 
@@ -216,7 +165,8 @@
                                 <i class="fas fa-globe-americas text-success me-2"></i>
                                 Environmental
                             </h4>
-                            <p class="card-text">Eco-friendly habits (planting trees, sustainable farming) safeguard wildlife and ecosystems.</p>
+                            <p class="card-text">Eco-friendly habits (planting trees, sustainable farming) safeguard
+                                wildlife and ecosystems.</p>
                         </div>
                     </div>
                 </div>
@@ -227,7 +177,8 @@
                                 <i class="fas fa-users text-primary me-2"></i>
                                 Social
                             </h4>
-                            <p class="card-text">Group actions (recycling drives, awareness campaigns) encourage collective responsibility.</p>
+                            <p class="card-text">Group actions (recycling drives, awareness campaigns) encourage
+                                collective responsibility.</p>
                         </div>
                     </div>
                 </div>
@@ -238,7 +189,8 @@
                                 <i class="fas fa-chart-line text-warning me-2"></i>
                                 Economic
                             </h4>
-                            <p class="card-text">Preventing pollution and climate issues lowers economic damage from floods, droughts, and health crises.</p>
+                            <p class="card-text">Preventing pollution and climate issues lowers economic damage from
+                                floods, droughts, and health crises.</p>
                         </div>
                     </div>
                 </div>
@@ -246,42 +198,8 @@
         </div>
     </section>
 
-    <!-- <section id="business" class="py-5">
-        <div class="container">
-            <h2 class="section-title text-center display-5">Why is Sustainability Important in Business?</h2>
-            <div class="row g-4 mb-5">
-                <div class="col-lg-4">
-                    <div class="text-center mb-4">
-                        <div class="bg-warning rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                            <i class="fas fa-dollar-sign fa-2x text-white"></i>
-                        </div>
-                        <h4 class="mt-3 text-primary">Cost Savings</h4>
-                        <p>Reduced energy costs, waste management savings, and improved operational efficiency lead to significant cost reductions.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="text-center mb-4">
-                        <div class="bg-success rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                            <i class="fas fa-heart fa-2x text-white"></i>
-                        </div>
-                        <h4 class="mt-3 text-primary">Brand Reputation</h4>
-                        <p>Strong sustainability practices enhance brand image and build trust with environmentally conscious consumers.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="text-center mb-4">
-                        <div class="bg-info rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                            <i class="fas fa-shield-alt fa-2x text-white"></i>
-                        </div>
-                        <h4 class="mt-3 text-primary">Risk Management</h4>
-                        <p>Proactive sustainability measures help businesses mitigate environmental and regulatory risks.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-    <!-- ------------------------------------------------------------------------ -->
-      <section id="business" class="py-5">
+
+    <section id="business" class="py-5">
         <div class="container">
             <h2 class="section-title text-center display-5">Why is Sustainability Important in Business?</h2>
             <div class="row g-4 mb-5" style="margin:auto; ">
@@ -305,7 +223,9 @@
                             <i class="fas fa-heart fa-2x text-white"></i>
                         </div>
                         <h3 class="mt-3 text-primary">Brand Reputation</h3>
-                        <p style="color: azure;font-family:Arial;">Strong sustainability practices enhance brand image and build trust with environmentally conscious consumers. This improves customer loyalty.</p>
+                        <p style="color: azure;font-family:Arial;">Strong sustainability practices enhance brand image
+                            and build trust with environmentally conscious consumers. This improves customer loyalty.
+                        </p>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -324,13 +244,12 @@
             </div>
         </div>
     </section>
-    <!-- ------------------------------------------------------------------------ -->
 
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row g-4">
-                <div class="col-lg-4" >
+                <div class="col-lg-4">
                     <h4 class="footer-title">EcoGuide</h4>
                     <p>Leading the way towards sustainable business practices for a better tomorrow.</p>
                     <div class="social-icons">
@@ -362,7 +281,7 @@
             <div class="text-center">
                 <p>&copy; 2025 EcoGuide. All rights reserved. Built with sustainability in mind.</p>
             </div>
-          
+
         </div>
     </footer>
 
@@ -370,4 +289,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="javascript.js"></script>
 </body>
+
 </html>
