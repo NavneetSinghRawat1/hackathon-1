@@ -5,18 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eco Living - Login & Signup</title>
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             background: linear-gradient(135deg, #a5d6a7, #e8f5e9);
-            display: flex;
+            /* display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: center; */
             height: 100vh;
         }
 
-        .container {
+        .container1 {
             background: #fff;
             padding: 30px;
             border-radius: 14px;
@@ -69,12 +72,38 @@
         .switch a:hover {
             text-decoration: underline;
         }
+        #all_center{
+             display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 100px;
+        }
     </style>
 </head>
 
 <body>
+     <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#"><i class="fas fa-leaf me-2"></i>EcoGuide</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aboutus.html">About us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="footprints.html">Carbon Footprint calculator</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="loginSignup.html" >  <img src="./img/icons8-login-100.png" alt="login" style="height: 30px;"> </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="all_center">
 
-    <div class="container" id="login-box">
+    
+    <div class="container1" id="login-box">
         <h2>Login 🌍</h2>
         <form method="post" action="http://localhost:3030/login">
             <input name="email" type="email" placeholder="Email" required>
@@ -86,7 +115,7 @@
         </div>
     </div>
 
-    <div class="container" id="signup-box" style="display:none;">
+    <div class="container1" id="signup-box" style="display:none;">
         <h2>Sign Up 🌱</h2>
         <form method="post" action="http://localhost:3030/signup">
             <input name="username" type="text" placeholder="Username" required>
@@ -98,6 +127,46 @@
             Already have an account? <a href="#" onclick="toggleForm()">Login</a>
         </div>
     </div>
+    </div>
+      <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4" >
+                    <h4 class="footer-title">EcoGuide</h4>
+                    <p>Leading the way towards sustainable business practices for a better tomorrow.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/?lang=en-in"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="footer-title">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="footer-link">Home</a></li>
+                        <li><a href="aboutus.html" class="footer-link">About</a></li>
+                        <li><a href="footprints.html" class="footer-link">Carbon Calculator</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="footer-title">Contact</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope me-2"></i>ecoguide@gmail.com</li>
+                        <li><i class="fas fa-phone me-2"></i>+91 98765 43210</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i>Civil Lines, Rajasthan</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p>&copy; 2025 EcoGuide. All rights reserved. Built with sustainability in mind.</p>
+            </div>
+          
+        </div>
+    </footer>
 
     <script>
         function toggleForm() {
@@ -112,6 +181,8 @@
             }
         }
     </script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="javascript.js"></script>
 </body>
 
 </html>
