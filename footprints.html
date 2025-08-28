@@ -8,6 +8,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+      h1,h2,h3,h4,h5,h6,#tips,.kpi{
+        color: white;
+      }
       :root {
         --bg: #0b1320;
         --card: #121a2b;
@@ -28,8 +31,7 @@
       }
       body {
         margin: 0;
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Inter,
-          Arial, sans-serif;
+        font-family: 'Arial', sans-serif;
         background: linear-gradient(
           180deg,
           #0b1320 0%,
@@ -38,7 +40,7 @@
         );
         color: var(--ink);
       }
-      .container {
+      .container1 {
         max-width: 1100px;
         margin: 2rem auto;
         padding: 0 1rem 3rem;
@@ -67,6 +69,7 @@
         .grid {
           grid-template-columns: 1.1fr 0.9fr;
         }
+
       }
       .card {
         background: linear-gradient(180deg, #121a2b, #0f1626);
@@ -105,7 +108,7 @@
       }
       input,
       select {
-        width: 180px;
+        width: 160px;
         max-width: 50vw;
         background: #0b1221;
         color: var(--ink);
@@ -265,7 +268,7 @@
                     <li class="nav-item"><a class="nav-link" href="aboutus.html">About us</a></li>
                     <li class="nav-item"><a class="nav-link" href="footprints.html">Carbon Footprint calculator</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="loginSignup.html" >  <img src="./img/icons8-login-50.png" alt="login" style="height: 30px;"> </a></li>
+                    <li class="nav-item"><a class="nav-link" href="loginSignup.html" >  <img src="./img/icons8-login-100.png" alt="login" style="height: 30px;"> </a></li>
                    
                 </ul>
             </div>
@@ -273,7 +276,7 @@
     </nav>
 
 
-    <div class="container">
+    <div class="container1">
       <div class="header">
         <div>
           <div class="title">♻️ Carbon Footprint Calculator</div>
@@ -407,10 +410,6 @@
               <button class="ghost" id="printBtn">Print / Save PDF</button>
             </div>
 
-            <div class="foot">
-              Note: This is a simplified calculator for demos/hackathons. Edit
-              the constants in the JS section to localize factors.
-            </div>
           </div>
         </section>
 
@@ -461,12 +460,16 @@
         </section>
       </div>
 
-      <p class="foot">
-        Made for hackathons • No external libraries • MIT‑style usage permitted
-      </p>
+     
     </div>
 
     <script>
+
+
+
+
+
+
       // === Emission factors (editable) ===
       const FACTORS = {
         ELECTRICITY_KWH: 0.7, // kg CO2e per kWh (example grid avg)
