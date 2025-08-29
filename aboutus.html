@@ -8,6 +8,58 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('./img/img7.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            min-height: 91vh;
+            color: rgb(208, 252, 250);
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.76);
+            margin-bottom: 1rem;
+        }
+
+        .hero-quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.76);
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .hero-author {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            text-align: right;
+            text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.76);
+        }
+
+        @media (max-width: 991px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+
+            .hero-quote {
+                font-size: 2rem;
+            }
+
+            .hero-author {
+                font-size: 1.1rem;
+                margin-right: 20px;
+            }
+        }
+
+        .hero-section div a button:hover {
+            background-color: rgb(0, 0, 0);
+        }
+    </style>
 </head>
 
 <body>
@@ -33,16 +85,9 @@
         </div>
     </nav>
     <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="hero-content text-center fade-in">
-                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner" style="height: 37vh;">
-                        <img src="img/img3.jpg" alt="">
-
-                    </div>
-                </div>
-            </div>
+    
+    <section class="hero-section d-flex flex-column justify-content-center align-items-center text-center">
+        <div class="hero-title">About Us</div>
     </section>
 
 
